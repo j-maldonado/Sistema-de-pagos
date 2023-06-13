@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div>
+    
+<table>
+    <h2>Lista de Clientes</h2>
+    <thead>
+        <tr>
+            {% for key in field_keys %}
+                <th>{{ key }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% if clientes|length %}
+            {% for cliente in clientes %}
+                <tr>
+                    <td><a href="{% url 'detail' cliente.id %}">{{ cliente.id }}</a></td>
+                    <td><a href="{% url 'detail' cliente.id %}">{{ cliente.nombre}}</a> </td>
+                    <td><a href="{% url 'detail' cliente.id %}">{{ cliente.apellido }}</a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="{{ field_keys|length }}">No hay Clientes</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+<!-- <div class="pagination">
+    <span class="step-links">
+        {% if clientes.has_previous %}
+        <a href="?page=1">&laquo; primera</a>
+        <a href="?page={{ cliente.previous_page_number }}">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ clientes.number }} de {{ clientes.paginator.num_pages }}.
+        </span>
+
+        {% if clients.has_next %}
+        <a href="?page={{ cliente.next_page_number }}">siguiente</a>
+        <a href="?page={{ cliente.paginator.num_pages }}">última &raquo;</a>
+        {% endif %}
+    </span>
+</div> -->
+
+<a href="{% url 'create' %}" class="button">+ Nuevo Cliente</a>
+<p class="message">*Haz click sobre el cliente que desees editar</p>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% csrf_token %}
+    <div class="cliente-detail">
+        <h1>Detalle del Cliente</h1>
+
+        <p><strong>Nombre:</strong> {{ clientes.nombre }}</p>
+        <p><strong>Apellido:</strong> {{ clientes.apellido }}</p>
+        <p><strong>DNI:</strong> {{ clientes.dni }}</p>
+        <p><strong>Fecha de Nacimiento:</strong> {{ clientes.fecha_nacimiento }}</p>
+        <p><strong>Email:</strong> {{ clientes.email }}</p>
+
+        <div class="actions">
+            <a href="{% url 'update' clientes.id %}" class="button">Editar</a>
+            <a href="{% url 'delete' clientes.id %}" class="button">Eliminar</a>
+            <a href="{% url 'pagos' clientes.id %}" class="button">Listar Pagos</a>
+        </div>
+    </div>
+{% endblock %}

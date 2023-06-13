@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>Lista de Pagos</h1>
+
+    <ul>
+        {% for cliente in clientes %}
+        <h2>{{ cliente }}</h2>
+        {% for pago in cliente.pagos.all%}
+            <tr>
+                <td>{{ pago.mes_pago }}</td>
+                <td>{{ pago.fecha_pago }}</td>
+            </tr>
+            <br>
+        {% empty %}
+            <tr>
+                <td colspan="{{ field_keys|length }}">No hay Pagos</td>
+            </tr>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+
+{% endblock %}

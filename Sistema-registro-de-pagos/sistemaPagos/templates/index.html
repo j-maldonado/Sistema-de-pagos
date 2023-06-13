@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <title>{% block title %} Paycuan - Sistema de Pagos {% endblock %}</title>
+
+</head>
+<body>
+    <header>
+        {% load static %}
+        <div class="logo">
+            <img src="{% static 'images/Logo.png' %}" alt="Logo">
+          </div>
+        <nav> 
+            <ul>
+                {% if user.is_authenticated %}       
+                    <li><a href="{% url 'clientes' %}">Clientes   </a></li> | &nbsp;
+                    <li><a href="{% url 'pagosIngresar' %}">Ingresar Pago</a></li>| &nbsp;
+                    <li class="logout-link"><a href="{% url 'logout' %}">Cerrar Sesión<img class="logout-ico" src="{% static 'images/logout.png' %}"></a></li>
+                       
+                {% else %}
+                
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main> 
+        {% block content %}
+        
+        {% endblock %}
+        <section>
+            <div class='air air1'></div>
+            <div class='air air2'></div>
+            <div class='air air3'></div>
+            <div class='air air4'></div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            
+            {% include 'footer.html' %}
+        </div>
+    </footer>
+        
+    
+</body>
+</html>
